@@ -1,0 +1,163 @@
+### user-api calls
+
+### User Register
+
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+    "firstName": "suresh",
+    "lastName": "raina",
+    "email": "suresh@gmail.com",
+    "password": "raina123",
+    "profileImageUrl": "http://exmaple.com/mahesh.jpg"
+}
+
+### login user
+POST http://localhost:4000/common-api/login
+Content-Type: application/json
+
+{
+    "email":"suresh@gmail.com",
+    "password": "raina123"
+}
+
+### posting comment
+PUT  http://localhost:4000/user-api/comments
+Content-Type: application/json
+
+{
+    "userId":"69896b9a8621deecb54b4517",
+    "articleId":"69897a19e5abadb069d5f0a7",
+    "comments":"from this article"
+}
+
+//get allcomments
+###
+GET http://localhost:4000/user-api/comments/69897a19e5abadb069d5f0a7
+
+### read all articles
+GET http://localhost:4000/user-api/articles
+
+
+### Author api calls
+
+### author register
+POST http://localhost:4000/author-api/users
+Content-Type: application/json
+
+{
+    "firstName": "kl",
+    "lastName": "Rahul",
+    "email": "rahul@gmail.com",
+    "password": "rahul123",
+    "profileImageUrl": "http://exmaple.com/rahul.jpg"
+}
+
+### login author
+POST http://localhost:4000/common-api/login
+Content-Type: application/json
+
+{
+    "email":"hardik@gmail.com",
+    "password": "hardik456"
+}
+
+### create article  
+POST http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+
+    "title":"test2 title",
+    "category": "sports",
+    "content":"content of test2 article"
+}
+
+
+###get articles
+GET http://localhost:4000/author-api/articles/698969ed57351614b0ebf18d
+
+### edit article
+PUT http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+    "articleId":"69898fef0c857b3f7e4559ce",
+    "author":"698969ed57351614b0ebf18d",
+    "title":"The Goat Series",
+    "category": "Cricket",
+    "content":"AUS vs ENG"
+}
+
+### soft delete article
+PATCH http://localhost:4000/author-api/articles/69897a19e5abadb069d5f0a7/status
+Content-Type: application/json
+
+{ "isArticleActive": true }
+
+
+
+
+### Test req
+GET http://localhost:4000/test
+
+
+###admin api calls
+
+### admin login
+POST http://localhost:4000/common-api/login
+Content-Type: application/json
+
+{
+   "email":"admin@mail.com",
+   "password":"admin"
+}
+
+### read articles
+GET http://localhost:4000/admin-api/articles
+
+### block user
+PUT http://localhost:4000/admin-api/block-user
+Content-Type: application/json
+
+{
+    "userId":"698969ed57351614b0ebf18d",
+    "adminId":"698ac097c80e33b8b9ceadcf"
+
+}
+
+
+### Unblock User
+PUT http://localhost:4000/admin-api/unblock-user
+Content-Type: application/json
+
+{
+    "userId":"698969ed57351614b0ebf18d",
+    "adminId":"698ac097c80e33b8b9ceadcf"
+}
+
+### Get all Users
+GET http://localhost:4000/admin-api/users
+
+
+
+### common-api calls
+
+
+### logout
+GET http://localhost:4000/common-api/logout
+
+
+### change password
+PUT http://localhost:4000/common-api/change-password
+Content-Type: application/json
+
+{
+    "email":"hardik@gmail.com",
+    "currentPassword":"hardik123",
+    "newPassword":"hardik456"
+}
+
+###
+GET http://localhost:4000/common-api/check-auth
