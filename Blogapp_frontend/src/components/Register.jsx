@@ -27,14 +27,14 @@ function Register() {
     try {
 
       if (role === "user") {
-        let res = await axios.post('http://localhost:4000/user-api/users', formData);
+        let res = await axios.post('https://articlehub-yu4s.onrender.com/user-api/users', formData);
         if (res.status === 201){
           toast.success("Registration successful! Please login.");
           navigate('/login');
         } 
       }
       if (role === "author") {
-        let res = await axios.post('http://localhost:4000/author-api/users', formData);
+        let res = await axios.post('https://articlehub-yu4s.onrender.com/author-api/users', formData);
         if (res.status === 201) {
           toast.success("Registration successful! Please login.");
           navigate('/login');

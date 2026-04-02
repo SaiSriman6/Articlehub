@@ -19,14 +19,14 @@ function Articles() {
       try {
         if(currentUser.role==="USER"){
             let res = await axios.get(
-            "http://localhost:4000/user-api/articles",
+            "https://articlehub-yu4s.onrender.com/user-api/articles",
             { withCredentials: true }
           )
           setArticles(res.data?.payload);
         }
         if(currentUser.role==="ADMIN"){
             let res = await axios.get(
-            "http://localhost:4000/admin-api/articles",
+            "https://articlehub-yu4s.onrender.com/admin-api/articles",
             { withCredentials: true }
             )
             setArticles(res.data?.payload);

@@ -22,7 +22,7 @@ function ArticleOfAuthor() {
       setLoading(true);
       try {
         let res = await axios.get(
-          `http://localhost:4000/author-api/articles/${currentUser._id}`,
+          `https://articlehub-yu4s.onrender.com/author-api/articles/${currentUser._id}`,
           { withCredentials: true }
         )
         setArticles(res.data?.payload);

@@ -20,7 +20,7 @@ function ArticleById() {
     const getArticle = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`http://localhost:4000/user-api/article/${id}`, { withCredentials: true });
+        const res = await axios.get(`https://articlehub-yu4s.onrender.com/user-api/article/${id}`, { withCredentials: true });
         setArticle(res.data.payload);
       } catch (err) {
         setError(err.response?.data?.error);
@@ -44,7 +44,7 @@ function ArticleById() {
     try {
       setLoading(true);
       let res = await axios.patch(
-        `http://localhost:4000/author-api/articles/${id}/status`,
+        `https://articlehub-yu4s.onrender.com/author-api/articles/${id}/status`,
         obj,
         { withCredentials: true }
       )
@@ -75,7 +75,7 @@ function ArticleById() {
     try {
       setLoading(true);
       let res = await axios.put(
-        "http://localhost:4000/user-api/comments",
+        "https://articlehub-yu4s.onrender.com/user-api/comments",
         commentObj,
         { withCredentials: true }
       );
