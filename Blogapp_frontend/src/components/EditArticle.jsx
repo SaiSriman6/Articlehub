@@ -25,7 +25,7 @@ function EditArticle() {
 
     try {
       let res = await axios.put(
-        "https://articlehub-yu4s.onrender.com/author-api/articles",
+        `${import.meta.env.VITE_API_URL}/author-api/articles`,
         updatedArticle,
         { withCredentials: true }
       );

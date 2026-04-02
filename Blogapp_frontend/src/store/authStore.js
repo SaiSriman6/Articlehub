@@ -11,7 +11,7 @@ export const useAuth=create((set)=>({
         try{
             set({loading:true,error:null});
             
-            let res=await axios.post("https://articlehub-yu4s.onrender.com/common-api/login",
+            let res=await axios.post(`${import.meta.env.VITE_API_URL}/common-api/login`,
                 userObj,
             {withCredentials:true})
             set({loading:false,
@@ -34,7 +34,7 @@ export const useAuth=create((set)=>({
         //update state
         try{
            set({loading:true,error:null})
-           await axios.get("https://articlehub-yu4s.onrender.com/common-api/logout",{withCredentials:true})
+           await axios.get(`${import.meta.env.VITE_API_URL}/common-api/logout`,{withCredentials:true})
            set({
             currentUser:null,
             loading:false,
@@ -56,7 +56,7 @@ export const useAuth=create((set)=>({
                 loading : true,
                 error : null
             })
-            let res = await axios.get('https://articlehub-yu4s.onrender.com/common-api/check-auth',{withCredentials : true})
+            let res = await axios.get(`${import.meta.env.VITE_API_URL}/common-api/check-auth`,{withCredentials : true})
             
             set({
                 currentUser : res.data.payload,

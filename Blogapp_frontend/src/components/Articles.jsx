@@ -19,14 +19,14 @@ function Articles() {
       try {
         if(currentUser.role==="USER"){
             let res = await axios.get(
-            "https://articlehub-yu4s.onrender.com/user-api/articles",
+            `${import.meta.env.VITE_API_URL}/user-api/articles`,
             { withCredentials: true }
           )
           setArticles(res.data?.payload);
         }
         if(currentUser.role==="ADMIN"){
             let res = await axios.get(
-            "https://articlehub-yu4s.onrender.com/admin-api/articles",
+            `${import.meta.env.VITE_API_URL}/admin-api/articles`,
             { withCredentials: true }
             )
             setArticles(res.data?.payload);

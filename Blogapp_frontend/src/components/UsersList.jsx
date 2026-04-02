@@ -13,7 +13,7 @@ function UsersList() {
     try {
       setLoading(true);
       let res = await axios.patch(
-        `https://articlehub-yu4s.onrender.com/admin-api/users/${userObj?._id}/status`,
+        `${import.meta.env.VITE_API_URL}/admin-api/users/${userObj?._id}/status`,
         obj,
         { withCredentials: true }
       );

@@ -12,7 +12,7 @@ function AddArticle() {
     setLoading(true);
     try {
       let res = await axios.post(
-        "https://articlehub-yu4s.onrender.com/author-api/articles",
+        `${import.meta.env.VITE_API_URL}/author-api/articles`,
         articleObj,
         { withCredentials: true }
       );

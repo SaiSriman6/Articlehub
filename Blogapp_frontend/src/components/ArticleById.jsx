@@ -44,7 +44,7 @@ function ArticleById() {
     try {
       setLoading(true);
       let res = await axios.patch(
-        `https://articlehub-yu4s.onrender.com/author-api/articles/${id}/status`,
+        `${import.meta.env.VITE_API_URL}/author-api/articles/${id}/status`,
         obj,
         { withCredentials: true }
       )
@@ -75,7 +75,7 @@ function ArticleById() {
     try {
       setLoading(true);
       let res = await axios.put(
-        "https://articlehub-yu4s.onrender.com/user-api/comments",
+        `${import.meta.env.VITE_API_URL}/user-api/comments`,
         commentObj,
         { withCredentials: true }
       );
