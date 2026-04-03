@@ -15,7 +15,7 @@ commonRouter.post('/login',async(req,res)=>{
  res.cookie("token", token, {
   httpOnly: true,
   secure: true,
-  sameSite: "None"
+  sameSite: "none"
 });
  res.status(200).json({message:"login success",payload:userObj});
 })
@@ -26,7 +26,7 @@ commonRouter.get('/logout',async(req,res)=>{
   res.clearCookie('token',{
   httpOnly:true,
   secure:true,
-  sameSite:'None'
+  sameSite:'none'
 })
   res.status(200).json({messaage:"logged out successfully"})
 })
