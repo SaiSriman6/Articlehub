@@ -15,10 +15,7 @@ commonRouter.post('/login',async(req,res)=>{
  res.cookie("token", token, {
   httpOnly: true,
   secure: true,
-  sameSite: "none",
-  path: "/",
-  domain: ".onrender.com",
-  maxAge: 60 * 60 * 1000
+  sameSite: "none"
 });
  res.status(200).json({message:"login success",payload:userObj});
 })
