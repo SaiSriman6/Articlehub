@@ -17,6 +17,7 @@ commonRouter.post('/login',async(req,res)=>{
   secure: true,
   sameSite: "none",
   path: "/",
+  domain: ".onrender.com",
   maxAge: 60 * 60 * 1000
 });
  res.status(200).json({message:"login success",payload:userObj});
