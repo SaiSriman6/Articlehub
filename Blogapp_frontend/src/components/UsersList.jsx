@@ -42,7 +42,7 @@ function UsersList() {
       try {
         setLoading(true);
         let res = await axios.get(
-          "http://localhost:4000/admin-api/users",
+          `${import.meta.env.VITE_API_URL}/admin-api/users`,
           { withCredentials: true }
         );
         if (res.status === 200) {

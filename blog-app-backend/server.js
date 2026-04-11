@@ -13,7 +13,7 @@ const app=exp()
 app.set("trust proxy", 1);
 app.use(cors({
   origin: [
-    'https://articlehub-flame.vercel.app'
+    'https://articlehub-flame.vercel.app',
   ],
   credentials: true,
 }))

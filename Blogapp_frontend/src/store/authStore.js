@@ -1,7 +1,7 @@
-import {create} from 'zustand'
+import {create,persist} from 'zustand'
 import axios from 'axios'
 
-export const useAuth=create((set)=>({
+export const useAuth=create(persist((set)=>({
     currentUser:null,
     loading:false,
     isAuthenticated:false,
@@ -66,8 +66,12 @@ export const useAuth=create((set)=>({
         }catch(err){
             set({
                 loading : false,
+                isAuthenticated:false,
+                currentUser:null,
                 error : err.response?.data?.error || "Failed"
             })
         }
     }
-}))
+})
+
+))
