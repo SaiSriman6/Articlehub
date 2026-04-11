@@ -72,6 +72,8 @@ export const useAuth=create(persist((set)=>({
             })
         }
     }
-})
-
+}),{
+    name: 'auth-storage',
+    partialize: (state) => ({ currentUser: state.currentUser, isAuthenticated: state.isAuthenticated })
+}
 ))
