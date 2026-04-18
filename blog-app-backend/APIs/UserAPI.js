@@ -70,3 +70,12 @@ userRoute.get('/articles',verifyToken("USER"),async(req,res)=>{
    res.status(200).json({message:"Articles are",payload:articlesList});
 
 })
+
+userRoute.get('/article/:id',verifyToken("USER"),async(req,res)=>{
+    let articleId=req.params.id;
+    let article=await ArticleModel.find({_id:articleId})
+    .populate("author","firstName email")
+   .populate("comments.user","firstName email")
+    res.status(200).json({message:"Articles are",payload:article});
+
+})
