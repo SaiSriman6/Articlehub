@@ -150,3 +150,12 @@ updatedArticle = await updatedArticle.populate([
   res.status(200).json({
     message: `Article ${isArticleActive ? "restored" : "deleted"} successfully`,payload: updatedArticle});
 }); 
+
+authorRoute.get('/article/:id',verifyToken("AUTHOR"),async(req,res)=>{
+    let articleId=req.params.id
+    let article=await ArticleModel.find({_id:articleId})
+    .populate("author","firstName email")
+   .populate("comments.user","firstName email")
+   res.status(200).json({
+    message: `Article is`,payload: article});
+})

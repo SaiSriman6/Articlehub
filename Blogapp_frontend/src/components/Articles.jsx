@@ -14,31 +14,46 @@ function Articles() {
   }
 
   useEffect(() => {
-    async function getArticles() {
-      setLoading(true);
-      try {
-        if(currentUser.role==="USER"){
-            let res = await axios.get(
-            `${import.meta.env.VITE_API_URL}/user-api/articles`,
-            { withCredentials: true }
-          )
-          setArticles(res.data?.payload);
-        }
-        if(currentUser.role==="ADMIN"){
-            let res = await axios.get(
-            `${import.meta.env.VITE_API_URL}/admin-api/articles`,
-            { withCredentials: true }
-            )
-            setArticles(res.data?.payload);
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+  if (!currentUser) return;
+
+  async function getArticles() {
+    setLoading(true);
+
+    try {
+      if(currentUser?.role==="USER"){
+        let res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user-api/articles`,
+          { withCredentials: true }
+        )
+        setArticles(res.data?.payload);
       }
+
+      if(currentUser?.role==="ADMIN"){
+        let res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/admin-api/articles`,
+          { withCredentials: true }
+        )
+        setArticles(res.data?.payload);
+      }
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-    getArticles();
-  }, [])
+  }
+
+  getArticles();
+
+}, [currentUser]);
+
+if (!currentUser) {
+  return (
+    <div className="flex justify-center items-center h-[60vh]">
+      Loading user...
+    </div>
+  );
+}
 
   if (loading) {
     return (
