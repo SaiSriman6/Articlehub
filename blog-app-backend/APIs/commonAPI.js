@@ -32,7 +32,10 @@ commonRouter.get('/logout',async(req,res)=>{
 })
 
 //password changing
-commonRouter.put('/change-password',verifyToken,async(req,res)=>{
+commonRouter.put(
+  "/change-password",
+  verifyToken("USER","AUTHOR","ADMIN"),
+  async (req, res) => {
     //get old password and new password from req
     let { email,currentPassword,newPassword } =req.body;
     //get user
@@ -43,6 +46,18 @@ commonRouter.put('/change-password',verifyToken,async(req,res)=>{
     if(!isMatch){
         return res.status(401).json({message:"Invalid password"})
     }
+
+    //compare if newPassword and currentPassword are same
+    const samePassword = await bcrypt.compare(
+        newPassword,
+        user.password
+      );
+
+      if (samePassword) {
+        return res.status(400).json({
+          message: "New password cannot be same as old password"
+        });
+      }
     //replace current with new password
     user.password=newPassword;
     await user.validate();
@@ -51,8 +66,8 @@ commonRouter.put('/change-password',verifyToken,async(req,res)=>{
     await user.save();
     //send response
     res.status(200).json({message:"password Updated"})
-
-})
+  }
+);
 
 commonRouter.get("/check-auth",verifyToken("USER","AUTHOR","ADMIN"),(req,res)=>{
   res.status(200).json({message:"authenticated",payload:req.user})
