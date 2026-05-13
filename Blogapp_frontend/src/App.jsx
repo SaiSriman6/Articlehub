@@ -18,6 +18,8 @@ import AdminDashboard from './components/AdminDashboard'
 import UsersList from './components/UsersList'
 import ProtectedRoute from './components/ProtectedRoute'
 import Errorboundary from './components/Errorboundary'
+import Profile from './components/Profile'
+import ChangePassword from './components/ChangePassword'
 
 function App() {
   const routerObj=createBrowserRouter([
@@ -71,6 +73,14 @@ function App() {
       {
         path:"users",
         element:<UsersList/>
+      },
+      {
+        path:"/profile/:id",
+        element:<Profile/>
+      },
+      {
+        path:"/change-password",
+        element:<ChangePassword/>
       }
     ]
     }
