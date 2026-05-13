@@ -15,6 +15,10 @@ function Header() {
     toast.success("Logout successful ✅");
     navigate("/login");
   };
+  const toProfile = (userObj)=>{
+    navigate(`/profile/${userObj._id}`);
+  }
+
   const navStyle =
     "text-gray-700 hover:text-blue-600 font-medium transition";
   const activeStyle = "text-blue-600 font-semibold underline";
@@ -81,12 +85,13 @@ function Header() {
               </li>
             </ul>
           ) : (
-            <div className="flex flex-col md:flex-row items-center gap-4 p-4 md:p-0">
+            <div className="flex flex-col md:flex-row items-center gap-4 p-4 md:p-0" onClick={()=>toProfile(currentUser)}>
               <img
                 src={currentUser.profileImageUrl}
                 alt="profile"
                 className="w-12 h-12 rounded-full object-cover border-2 border-blue-400"
               />
+              
               <button
                 onClick={onLogout}
                 className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-sm transition"
