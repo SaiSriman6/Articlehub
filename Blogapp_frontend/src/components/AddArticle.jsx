@@ -18,7 +18,7 @@ function AddArticle() {
       );
       if (res.status === 201) {
         toast.success("Article Published Successfully");
-        navigate("/author-articles");
+        navigate("/articles");
       }
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
