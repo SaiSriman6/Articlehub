@@ -97,16 +97,27 @@ function ArticleById() {
     commentObj.articleId = article?._id;
     try {
       setLoading(true);
+      if(currentUser.role === "USER"){
       let res = await axios.put(
         `${import.meta.env.VITE_API_URL}/user-api/comments`,
         commentObj,
         { withCredentials: true }
       );
-      reset();
       if (res.status === 200) {
         toast.success("Comment Added");
         setArticle(res.data.payload);
       }
+    }
+    if(currentUser.role === "AUTHOR"){
+      let res=await axios.put(`${import.meta.env.VITE_API_URL}/author-api/comments`,
+        commentObj,
+        { withCredentials: true })
+      if (res.status === 200) {
+        toast.success("Comment Added");
+        setArticle(res.data.payload);
+      }
+    }
+      reset();
     } catch (err) {
       setError(err.message);
     } finally {
@@ -148,12 +159,10 @@ function ArticleById() {
 <div className="w-full px-3 sm:px-6 lg:max-w-5xl lg:mx-auto mt-6">
 
   <button
-    onClick={() =>
-      navigate(
-        currentUser?.role === "AUTHOR"
-          ? "/author-articles"
-          : "/articles"
-      )
+    onClick={() =>{
+      navigate("/articles")
+    }
+      
     }
     className="mb-6 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition w-full sm:w-auto"
   >
@@ -163,22 +172,9 @@ function ArticleById() {
 </div>
 
 
-{/* Main Layout Wrapper */}
 <div className="min-h-screen bg-gray-100 px-2 sm:px-6 lg:px-8 py-4 overflow-hidden">
 
-  <div className="
-      w-full
-      bg-white
-      shadow-lg
-      rounded-none sm:rounded-2xl
-      p-4 sm:p-6 md:p-8
-      sm:max-w-3xl
-      lg:max-w-5xl
-      sm:mx-auto
-      overflow-hidden
-  ">
-
-
+  <div className="w-full bg-white shadow-lg rounded-none sm:rounded-2xl p-4 sm:p-6 md:p-8 sm:max-w-3xl lg:max-w-5xl sm:mx-auto overflow-hidden">
     {/* Author Info */}
     <div className="border-b pb-4 mb-6">
 
@@ -306,9 +302,7 @@ function ArticleById() {
 
 
       {article?.comments?.length > 0 ? (
-
         <div className="space-y-4">
-
           {article.comments.map(commentObj => (
 
             <div
@@ -320,7 +314,6 @@ function ArticleById() {
                 shadow-sm
               "
             >
-
               <p className="text-sm font-semibold text-gray-800">
                 {commentObj?.user?.firstName}
               </p>
@@ -345,7 +338,7 @@ function ArticleById() {
 
 
       {/* Add Comment Form */}
-      {!(article?.author?._id === currentUser?._id) &&
+      {
         currentUser.role !== "ADMIN" && (
         <div className="mt-6">
 
