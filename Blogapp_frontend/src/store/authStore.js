@@ -10,7 +10,7 @@ export const useAuth=create((set)=>({
         const {...userObj}=userCredWithRole;
         try{
             set({loading:true,error:null});
-            
+            {console.log(import.meta.env.VITE_API_URL)}
             let res=await axios.post(`${import.meta.env.VITE_API_URL}/common-api/login`,
                 userObj,
             {withCredentials:true})

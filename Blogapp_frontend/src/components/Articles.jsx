@@ -28,6 +28,14 @@ function Articles() {
         setArticles(res.data?.payload);
       }
 
+      if(currentUser?.role==="AUTHOR"){
+        let res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/author-api/articles/${currentUser._id}`,
+          { withCredentials: true }
+        )
+        setArticles(res.data?.payload);
+      }
+
       if(currentUser?.role==="ADMIN"){
         let res = await axios.get(
           `${import.meta.env.VITE_API_URL}/admin-api/articles`,
@@ -68,11 +76,17 @@ if (!currentUser) {
     <div className="min-h-screen bg-gray-100 px-6 py-10">
       <button
   onClick={() =>
-    navigate(
-      currentUser.role === "ADMIN"
-        ? "/admin-profile"
-        : "/user-profile"
-    )
+  {
+    if(currentUser?.role === "AUTHOR"){
+      navigate("/author-profile")
+    }
+    if(currentUser?.role==="USER"){
+      navigate("/user-profile");
+    }
+    if(currentUser?.role==="ADMIN"){
+      navigate("/admin-profile");
+    }
+  }
   }
   className="mb-8 px-5 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition"
   >

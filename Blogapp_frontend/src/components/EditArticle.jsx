@@ -47,34 +47,28 @@ function EditArticle() {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-start sm:items-center px-3 sm:px-6 py-6">
       
-      {/* Card */}
       <div className="w-full max-w-lg md:max-w-2xl lg:max-w-3xl bg-white shadow-xl rounded-2xl p-5 sm:p-8">
 
-        {/* Heading */}
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
           Edit Article ✏️
         </h2>
 
-        {/* Error */}
         {error && (
           <p className="text-red-500 text-center mb-3 text-sm sm:text-base">
             {error}
           </p>
         )}
 
-        {/* Loading */}
         {loading && (
           <p className="text-blue-500 text-center mb-3 animate-pulse text-sm sm:text-base">
             Updating article...
           </p>
         )}
 
-        {/* Form */}
         <form
           onSubmit={handleSubmit(editArticle)}
           className="space-y-4 sm:space-y-5"
         >
-          {/* Title */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-1">
               Title
@@ -88,7 +82,6 @@ function EditArticle() {
             />
           </div>
 
-          {/* Category */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-1">
               Category
@@ -102,7 +95,6 @@ function EditArticle() {
             />
           </div>
 
-          {/* Content */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-1">
               Content

@@ -9,11 +9,12 @@ function AuthorDashboard() {
     navigate("/add-article");
   }
   const viewArticles = () => {
-    navigate("/author-articles");
+    navigate("/articles");
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex justify-center items-center">
+      {console.log(`${import.meta.env.VITE_API_URL}`)}
       <div className="flex flex-1 justify-center items-center px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
           <div className="bg-white shadow-lg rounded-2xl p-8 text-center hover:shadow-xl transition">

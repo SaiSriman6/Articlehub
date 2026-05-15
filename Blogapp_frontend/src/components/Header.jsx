@@ -90,6 +90,7 @@ function Header() {
                 src={currentUser.profileImageUrl}
                 alt="profile"
                 className="w-12 h-12 rounded-full object-cover border-2 border-blue-400"
+                onClick={()=>toProfile(currentUser)}
               />
               
               <button

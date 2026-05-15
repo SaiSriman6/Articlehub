@@ -11,7 +11,6 @@ import UserDashboard from './components/UserDashboard'
 import AuthorDashboard from './components/AuthorDashboard'
 import { Toaster } from 'react-hot-toast'
 import Articles from './components/Articles'
-import ArticleOfAuthor from './components/ArticleOfAuthor'
 import ArticleById from './components/ArticleById'
 import EditArticle from './components/EditArticle'
 import AdminDashboard from './components/AdminDashboard'
@@ -58,10 +57,7 @@ function App() {
         path:"articles",
         element:<Articles/>
       },
-      {
-        path:"author-articles",
-        element:<ArticleOfAuthor/>
-      },
+      
       {
        path:'article/:id',
        element:<ArticleById/>  
