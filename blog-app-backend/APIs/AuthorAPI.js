@@ -159,3 +159,24 @@ authorRoute.get('/article/:id',verifyToken("AUTHOR"),async(req,res)=>{
    res.status(200).json({
     message: `Article is`,payload: article});
 })
+
+authorRoute.put('/comments',verifyToken("AUTHOR"),async(req,res)=>{
+   // get userId,articleId,comments form request
+   let {userId,articleId,comments}=req.body;
+   //check user
+   if(userId!==req.user._id){
+      return res.status(403).json({message:"You are not allowed"})
+   }
+
+   //find article by id
+   let checkArticle=await ArticleModel.find({_id:articleId});
+   // if article not found
+   if(!checkArticle){
+    return res.status(404).json({message:"Article not found"});
+   }
+   //update article
+   let updatedArticle=await ArticleModel.findByIdAndUpdate(articleId,{$push:{comments:{user:userId,comment:comments}}},{new:true,runValidators:true})
+   .populate("author","firstName email")
+   .populate("comments.user", "firstName email");
+   res.status(200).json({message:"Comment added",payload:updatedArticle});
+})
