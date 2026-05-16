@@ -18,8 +18,8 @@ POST http://localhost:4000/common-api/login
 Content-Type: application/json
 
 {
-    "email":"suresh@gmail.com",
-    "password": "raina123"
+    "email":"hardik@gmail.com",
+    "password": "hardik123"
 }
 
 ### posting comment
@@ -110,8 +110,8 @@ POST http://localhost:4000/common-api/login
 Content-Type: application/json
 
 {
-   "email":"admin@mail.com",
-   "password":"admin"
+   "email":"admin@gmail.com",
+   "password":"admin123"
 }
 
 ### read articles
@@ -140,6 +140,8 @@ Content-Type: application/json
 ### Get all Users
 GET http://localhost:4000/admin-api/users
 
+### Read article by Id
+GET http://localhost:4000/admin-api/articles/69cdf79011d5739e8e6b47f0
 
 
 ### common-api calls
@@ -150,13 +152,13 @@ GET http://localhost:4000/common-api/logout
 
 
 ### change password
-PUT http://localhost:4000/common-api/change-password
+PUT http://localhost:4000/common-api/changepassword
 Content-Type: application/json
 
 {
     "email":"hardik@gmail.com",
-    "currentPassword":"hardik123",
-    "newPassword":"hardik456"
+    "currentPassword":"123456",
+    "newPassword":"123456"
 }
 
 ###

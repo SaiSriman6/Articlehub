@@ -27,6 +27,15 @@ export const adminRoute=exp.Router();
   res.status(200).json({message:"Article is",payload:article});
  })
  
+ // get article by Id
+ adminRoute.get('/articles/:id',verifyToken('ADMIN'),async(req,res)=>{
+  let articleId=req.params.id;
+  let article=await ArticleModel.findById(articleId)
+  .populate("author","firstName email")
+  .populate("comments.user", "firstName email");
+  res.status(200).json({message:"Article is",payload:article});
+
+ })
 
 
 //Block / Unblock User

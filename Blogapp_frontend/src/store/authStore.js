@@ -68,7 +68,7 @@ export const useAuth=create((set)=>({
                 loading : false,
                 isAuthenticated:false,
                 currentUser:null,
-                error : err.response?.data?.error || "Failed"
+                error : err.response?.data?.error 
             })
         }
     }

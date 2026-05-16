@@ -17,7 +17,7 @@
 
 9. Design REST APIs for all resources
 
-###Registration Login
+###Registration & Login
 
 10. Registration & Login in common for USER & AUTHOR. Create a seperate service to reuse
 
