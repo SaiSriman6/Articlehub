@@ -96,7 +96,6 @@ function ArticleById() {
     commentObj.userId = currentUser._id;
     commentObj.articleId = article?._id;
     try {
-      setLoading(true);
       if(currentUser.role === "USER"){
       let res = await axios.put(
         `${import.meta.env.VITE_API_URL}/user-api/comments`,
@@ -120,9 +119,7 @@ function ArticleById() {
       reset();
     } catch (err) {
       setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
  
   if (loading) {

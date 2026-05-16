@@ -85,7 +85,7 @@ function Header() {
               </li>
             </ul>
           ) : (
-            <div className="flex flex-col md:flex-row items-center gap-4 p-4 md:p-0" onClick={()=>toProfile(currentUser)}>
+            <div className="flex flex-col md:flex-row items-center gap-4 p-4 md:p-0" >
               <img
                 src={currentUser.profileImageUrl}
                 alt="profile"
